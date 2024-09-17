@@ -19,13 +19,13 @@
         <mxCell id="4vfVLtGCvmXz7qJeSuFa-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="4vfVLtGCvmXz7qJeSuFa-1" vertex="1">
           <mxGeometry y="104" width="210" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="4vfVLtGCvmXz7qJeSuFa-4" value="+ getHour(): Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4vfVLtGCvmXz7qJeSuFa-1" vertex="1">
+        <mxCell id="4vfVLtGCvmXz7qJeSuFa-4" value="+ getHour(): Int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4vfVLtGCvmXz7qJeSuFa-1" vertex="1">
           <mxGeometry y="112" width="210" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="4vfVLtGCvmXz7qJeSuFa-7" value="+ getMinute(): Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4vfVLtGCvmXz7qJeSuFa-1" vertex="1">
+        <mxCell id="4vfVLtGCvmXz7qJeSuFa-7" value="+ getMinute(): Int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4vfVLtGCvmXz7qJeSuFa-1" vertex="1">
           <mxGeometry y="138" width="210" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="4vfVLtGCvmXz7qJeSuFa-8" value="+ getSecond(): Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4vfVLtGCvmXz7qJeSuFa-1" vertex="1">
+        <mxCell id="4vfVLtGCvmXz7qJeSuFa-8" value="+ getSecond(): Int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4vfVLtGCvmXz7qJeSuFa-1" vertex="1">
           <mxGeometry y="164" width="210" height="26" as="geometry" />
         </mxCell>
         <mxCell id="4vfVLtGCvmXz7qJeSuFa-9" value="+ setSecond(Int)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4vfVLtGCvmXz7qJeSuFa-1" vertex="1">
