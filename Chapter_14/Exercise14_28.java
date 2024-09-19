@@ -1,3 +1,4 @@
+package asdf;
 import java.util.Random;
 
 import javafx.application.Application;
@@ -14,19 +15,15 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.*;
 
-public class Exercise14_15 extends Application {
+public class Exercise14_28 extends Application {
 	@Override // Override the start method in the Application class
 	public void start(Stage primaryStage) {   
 		// Create a scene and place it in the stage
 		StackPane stackPane = new StackPane();
-		// Remember to make MyClock() Random
-		//stackPane.getChildren().add(new MyClock());
-		Text thisText = new Text(20,20,"STOP");
-		thisText.setFill(Color.WHITE);
-		thisText.setFont(Font.font("Times new Roman", FontWeight.NORMAL, 80));
-		stackPane.getChildren().add(thisText);
+		Random rand = new Random();
+		stackPane.getChildren().add(new MyClock(rand.nextInt(12),rand.nextInt(60),rand.nextInt(60)));
 		Scene scene = new Scene(stackPane, 400, 400);
-		primaryStage.setTitle("Excercise 14-15"); // Set the stage title
+		primaryStage.setTitle("Excercise 14-28"); // Set the stage title
 		primaryStage.setScene(scene); // Place the scene in the stage
 		primaryStage.show(); // Display the stage
 	}
@@ -53,17 +50,22 @@ class MyClock extends Pane {
 		this.second = second;
 		paint();
 	}
+	public MyClock() {
+		Random rand = new Random();
+		this.hour = rand.nextInt(12);
+		this.minute = rand.nextInt(60);
+		this.second = rand.nextInt(60);
+		paint();
+	}
 	private void paint() {
 		// Create a circle
-		Random rand = new Random();
-		double centerX = getWidth() / 2, centerY = getHeight() / 2;
-		double radius = Math.min(getWidth(), getHeight()) * 0.4;
-		Circle circle = new Circle(centerX, centerY, radius);
+		double centerXC = getWidth() / 2, centerYC = getHeight() / 2;
+		double radiusC = Math.min(getWidth(), getHeight()) * 0.4;
+		Circle circle = new Circle(centerXC, centerYC, radiusC);
 		circle.setFill(Color.WHITE);
 		circle.setStroke(Color.BLACK);
-		
-		
-		
+		//create Hour Hand
+		//Line line = new Line(centerXC, centerYC, )
 		
 		
 		getChildren().clear();
@@ -86,6 +88,17 @@ class MyClock extends Pane {
 	}
 	public void setSecond(int second) {
 		
+		paint();
+	}
+	@Override
+	public void setWidth(double width) {
+		super.setWidth(width);
+		paint();
+	}
+	
+	@Override
+	public void setHeight(double height) {
+		super.setHeight(height);
 		paint();
 	}
 }
