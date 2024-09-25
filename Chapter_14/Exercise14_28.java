@@ -1,4 +1,3 @@
-package asdf;
 import java.util.Random;
 
 import javafx.application.Application;
@@ -53,11 +52,16 @@ class MyClock extends Pane {
 	public MyClock() {
 		Random rand = new Random();
 		this.hour = rand.nextInt(12);
-		this.minute = rand.nextInt(60);
+		this.minute = rand.nextInt(2);
 		this.second = rand.nextInt(60);
 		paint();
 	}
 	private void paint() {
+		if (this.minute%2!=1) {
+			this.minute = 30;
+		}
+		hourHandVisable = true;
+		minuteHandVisable = true;
 		// Create a circle
 		double centerXC = getWidth() / 2, centerYC = getHeight() / 2;
 		double radiusC = Math.min(getWidth(), getHeight()) * 0.4;
@@ -65,14 +69,16 @@ class MyClock extends Pane {
 		circle.setFill(Color.WHITE);
 		circle.setStroke(Color.BLACK);
 		//create Hour Hand
-		//Line line = new Line(centerXC, centerYC, )
-		
+		Line hourHand = new Line(centerXC, centerYC, centerXC + radiusC *0.4* Math.cos(2 * this.hour * Math.PI / 12), centerYC - radiusC * 0.4 * Math.sin(2 * this.hour * Math.PI / 12));
+		Line minuteHand = new Line(centerXC, centerYC, centerXC + radiusC *0.7* Math.cos((this.minute+0.5) * Math.PI), centerYC - radiusC * 0.7 * Math.sin( (this.minute+0.5) * Math.PI));		
 		
 		getChildren().clear();
 		getChildren().add(circle); 
-//		getChidlren().add(hourHand);
-//		getChidlren().add(minuteHand);
-//		getChidlren().add(secondHand);
+		if (hourHandVisable)
+			getChildren().add(hourHand);
+		if (minuteHandVisable)
+			getChildren().add(minuteHand);
+//		getChildren().add(secondHand);
 		}
 	
 	
