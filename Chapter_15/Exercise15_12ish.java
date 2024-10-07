@@ -1,5 +1,7 @@
 package a;
 
+
+
 import javafx.animation.*;
 import javafx.util.*;
 import javafx.application.Application;
@@ -41,13 +43,19 @@ public class Exercise15_12ish extends Application {
 		rectangle.setFill(Color.BLACK);
 		stackPane.getChildren().add(polygon);
 		stackPane.getChildren().add(rectangle);
+		FadeTransition ft = new FadeTransition(Duration.seconds(2), rectangle);
+		ft.setFromValue(1);
+		ft.setToValue(0.01);
+		ft.setCycleCount(Timeline.INDEFINITE);
+		ft.setAutoReverse(true);
+		ft.play();
 		PathTransition pt = new PathTransition();
 		pt.setPath(polygon);
 		pt.setNode(rectangle);
 		pt.setDuration(Duration.seconds(4));
 		pt.setOrientation(
-				PathTransition.OrientationType.NONE);
-		pt.setCycleCount(100);
+				PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pt.setCycleCount(Timeline.INDEFINITE);
 		pt.setAutoReverse(false);
 		double x = 0;
 		pt.play();
