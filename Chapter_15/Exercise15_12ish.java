@@ -66,9 +66,11 @@ public class Exercise15_12ish extends Application {
 		stackPane.setOnMouseClicked(e->{
 			if (e.getButton() == MouseButton.PRIMARY) {
 				pt.play();
+				ft.play();
 			}
 			else {
 				pt.pause();
+				ft.pause();
 			}
 		});
 	}
