@@ -1,156 +1,109 @@
+
 package a;
 
-import java.util.Random;
 
+import javafx.util.*;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
+import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.shape.*;
-import javafx.scene.text.Font;
+import javafx.scene.input.*;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.control.*;
+import javafx.scene.text.Font;
+import javafx.scene.*;
+import javafx.geometry.Pos;
 import javafx.event.*;
 
-public class Exercise15_3 extends Application {
-	//When at home add this to virtual network
-	//--module-path C:\Users\User\Desktop\Randy_School\Java\JavaFX\javafx-sdk-23\lib --add-modules javafx.controls,javafx.fxml
-	//
-	TheCircle circle = new TheCircle();
+
+public class Exercise16_1 extends Application {
+	
+	public Text thisText = new Text(20,20,"programming is fun");
+
 	@Override // Override the start method in the Application class
 	public void start(Stage primaryStage) {   
 		// Create a scene and place it in the stage
-		StackPane stackPane = new StackPane();
-		Random rand = new Random();
-		stackPane.getChildren().add(circle);
-		HBox hBox = new HBox();
-		hBox.setSpacing(10);
-		hBox.setAlignment(Pos.CENTER);
-		Button btLeft = new Button("Left");
+		BorderPane pane = new BorderPane();
+		Rectangle rectangle = new Rectangle(0,0,25,50);
+				thisText.setFill(Color.BLACK);
+		thisText.setFont(Font.font("Times new Roman", FontWeight.NORMAL, 20));
+		Pane TextPane = new Pane();
+		TextPane.setStyle("-fx-border-color: black");
+		TextPane.getChildren().add(thisText);
+		pane.setCenter(TextPane);
+		HBox hBoxForBottom = new HBox(20);
+		Button btLeft = new Button("<=");
+		Button btRight = new Button("=>");
+		hBoxForBottom.getChildren().addAll(btLeft, btRight);
+		hBoxForBottom.setAlignment(Pos.CENTER);
+		pane.setBottom(hBoxForBottom);
 		btLeft.setOnAction(new LeftHandler());
-		Button btRight = new Button("Right");
 		btRight.setOnAction(new RightHandler());
-		Button btUp = new Button("Up");
-		btUp.setOnAction(new UpHandler());
-		Button btDown = new Button("Down");
-		btDown.setOnAction(new DownHandler());
-		hBox.getChildren().add(btLeft);
-		hBox.getChildren().add(btRight);
-		hBox.getChildren().add(btUp);
-		hBox.getChildren().add(btDown);
-		stackPane.getChildren().add(hBox);
-		BorderPane bp = new BorderPane();
-		bp.setCenter(stackPane);
-		bp.setBottom(hBox);
-		Scene scene = new Scene(bp, 400, 400);
-		primaryStage.setTitle("Excercise 15_03"); // Set the stage title
+		
+		HBox hBoxForTop = new HBox(21);
+		RadioButton btRed = new RadioButton("Red");
+		btRed.setOnAction(e ->thisText.setFill(Color.RED));
+		Label lbRed = new Label("Red",btRed);
+		RadioButton btYellow = new RadioButton("Yellow");
+		btYellow.setOnAction(e ->thisText.setFill(Color.YELLOW));
+		Label lbYellow = new Label("Yellow",btYellow);
+		RadioButton btBlack = new RadioButton("Black");
+		btBlack.setOnAction(e ->thisText.setFill(Color.BLACK));
+		Label lbBlack = new Label("Black",btBlack);
+		RadioButton btOrange = new RadioButton("Orange");
+		btOrange.setOnAction(e ->thisText.setFill(Color.ORANGE));
+		Label lbOrange = new Label("Orange",btOrange);
+		RadioButton btGreen = new RadioButton("Green");
+		btGreen.setOnAction(e ->thisText.setFill(Color.GREEN));
+		Label lbGreen = new Label("Green",btGreen);
+		hBoxForTop.getChildren().addAll(btRed, btYellow, btBlack, btOrange, btGreen);
+		hBoxForBottom.setAlignment(Pos.CENTER);
+		pane.setTop(hBoxForTop);
+		 
+		ToggleGroup groupForColors = new ToggleGroup();
+		btRed.setToggleGroup(groupForColors);
+		btYellow.setToggleGroup(groupForColors);
+		btBlack.setToggleGroup(groupForColors);
+		btOrange.setToggleGroup(groupForColors);
+		btGreen.setToggleGroup(groupForColors);
+
+		Scene scene = new Scene(pane, 400, 400);
+		primaryStage.setTitle("Excercise 15-12"); // Set the stage title
 		primaryStage.setScene(scene); // Place the scene in the stage
 		primaryStage.show(); // Display the stage
+		
 	}
+	
 	class RightHandler implements EventHandler<ActionEvent>{
 		@Override 
 		public void handle(ActionEvent e) {
-			circle.moveX(10.0);
-		}
+			if(thisText.getX()+10<400) {
+				thisText.setX(thisText.getX()+ 10);
+				}
+			}
 		
 	}
 	class LeftHandler implements EventHandler<ActionEvent>{
 		@Override 
 		public void handle(ActionEvent e) {
-			circle.moveX(-10.0);
+			if(thisText.getX()-10>0) {
+				thisText.setX(thisText.getX() - 10);
+			}		
 		}
-		
 	}
-	class DownHandler implements EventHandler<ActionEvent>{
-		@Override 
-		public void handle(ActionEvent e) {
-			circle.moveY(10.0);
-		}
-		
-	}
-	class UpHandler implements EventHandler<ActionEvent>{
-		@Override 
-		public void handle(ActionEvent e) {
-			circle.moveY(-10.0);
-		}
-		
-	}
+	
 	/**
 	 * The main method is only needed for the IDE with limited
 	 * JavaFX support. Not needed for running from the command line.
 	 */
+
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-}
-
-class TheCircle extends Pane {
-	public double radius;
-	public double centerX;
-	public double centerY;
-	public double changeX;
-	public double changeY;
-	public boolean first = true;
-	public TheCircle() {
-		paint();
-	}
-	
-	private void paint() {
-		
-		centerX = getWidth() / 2;
-		centerY = getHeight() / 2;
-		radius = Math.min(getWidth(), getHeight()) * 0.1;
-		first = false;
-		
-		Circle circle = new Circle(centerX+changeX, centerY+changeY, radius);
-		circle.setFill(Color.WHITE);
-		circle.setStroke(Color.BLACK);
-		
-		getChildren().clear();
-		getChildren().add(circle); 
-		}
-	
-	
-	public void setX(double newX) {
-		centerX = newX;
-		paint();
-	}
-	
-	
-	public void setY(double newY) {
-		centerY = newY;
-		paint();
-	}
-	public void moveX(double ChangeX) {
-		if(centerX+changeX + ChangeX<=getHeight()-radius&&centerX+changeX + ChangeX>=0+radius) {
-		changeX = changeX + ChangeX;
-		paint();
-		}
-	}
-	public void moveY(double ChangeY) {
-		if(centerY+changeY + ChangeY<=getWidth()-radius&&centerY+changeY + ChangeY>=0+radius) {
-		changeY = changeY + ChangeY;
-		paint();
-		}
-	}
-	@Override
-	public void setWidth(double width) {
-		super.setWidth(width);
-		paint();
-	}
-	
-	@Override
-	public void setHeight(double height) {
-		super.setHeight(height);
-		paint();
-	}
-
-
 }
