@@ -36,6 +36,7 @@ public class Exercise16_1 extends Application {
 		Pane TextPane = new Pane();
 		TextPane.setStyle("-fx-border-color: black");
 		TextPane.getChildren().add(thisText);
+		
 		pane.setCenter(TextPane);
 		HBox hBoxForBottom = new HBox(20);
 		Button btLeft = new Button("<=");
@@ -83,7 +84,7 @@ public class Exercise16_1 extends Application {
 	class RightHandler implements EventHandler<ActionEvent>{
 		@Override 
 		public void handle(ActionEvent e) {
-			if(thisText.getX()+10<400) {
+			if(thisText.getX()+165<400) {
 				thisText.setX(thisText.getX()+ 10);
 				}
 			}
@@ -92,7 +93,7 @@ public class Exercise16_1 extends Application {
 	class LeftHandler implements EventHandler<ActionEvent>{
 		@Override 
 		public void handle(ActionEvent e) {
-			if(thisText.getX()-10>0) {
+			if(thisText.getX()>0) {
 				thisText.setX(thisText.getX() - 10);
 			}		
 		}
