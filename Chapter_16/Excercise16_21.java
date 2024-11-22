@@ -1,5 +1,4 @@
 
-package a;
 
 
 import javafx.util.*;
@@ -22,34 +21,35 @@ import javafx.geometry.Pos;
 import javafx.event.*;
 
 
-public class Exercise16_21 extends Application {
+public class Excercise16_21 extends Application {
 	
 	public Text timerText = new Text(20,20,"programming is fun");
-	public Text startText = new Text(20,20,"programming is fun");
+	public Text startText = new Text(20,20,"Enter Time: ");
 
 	
 	@Override // Override the start method in the Application class
 	public void start(Stage primaryStage) {   
 		// Create a scene and place it in the stage
+		TextField startTime = new TextField("Bannana");
+		startTime.setEditable(true);
+		startTime.setStyle("-fx-test-fill: red");
+		//startTime.setFont(Font.font("Times new Roman", FontWeight.NORMAL, 20));
+		
 		startText.setFill(Color.BLACK);
 		startText.setFont(Font.font("Times new Roman", FontWeight.NORMAL, 20));
-		Pane StartTextPane = new Pane();
+		BorderPane StartTextPane = new BorderPane();
 		StartTextPane.setStyle("-fx-border-color: black");
-		StartTextPane.getChildren().add(startText);
+		StartTextPane.setLeft(startText);
+		StartTextPane.setRight(startTime);
 		TextField tf = new TextField();
-		
-		
-		 
-		
-
-		Scene scene = new Scene(StartTextPane, 400, 400);
+		Scene scene = new Scene(StartTextPane, 300, 200);
 		primaryStage.setTitle("Excercise 16-21"); // Set the stage title
 		primaryStage.setScene(scene); // Place the scene in the stage
 		primaryStage.show(); // Display the stage
 		
 	}
 	
-	class RightHandler implements EventHandler<ActionEvent>{
+	class StartTextHandler implements EventHandler<ActionEvent>{
 		@Override 
 		public void handle(ActionEvent e) {
 			
