@@ -1,3 +1,5 @@
+package a;
+
 
 
 
@@ -33,29 +35,29 @@ public class Excercise16_21 extends Application {
 	public Text timerText = new Text(20,20,"programming is fun");
 	public Text startText = new Text(20,20,"Enter Time: ");
 	public TextField tf = new TextField();
+	public BorderPane StartTextPane = new BorderPane();
 	public int TextInt = 0;
-
+	public Timeline timeline;
+    File file = new File("https://liveexample.pearsoncmg.com/common/audio/anthem/anthem0.mp3");
+    MediaPlayer mediaPlayer = new MediaPlayer(new Media(file.toURI().toString()));
 	
 	@Override // Override the start method in the Application class
 	public void start(Stage primaryStage) {   
 		// Create a scene and place it in the stage
-		TextField startTime = new TextField("");
-		startTime.setEditable(true);
-		startTime.setStyle("-fx-test-fill: red");
-		//startTime.setFont(Font.font("Times new Roman", FontWeight.NORMAL, 20));
+		tf.setEditable(true);
+		tf.setStyle("-fx-test-fill: red");
 		
-        File file = new File("/Users/luizsa/GitHub/java/intro-to-java-10th-edition/src/audio/us.mp3");
-        MediaPlayer mediaPlayer = new MediaPlayer(new Media(file.toURI().toString()));
-        StartTextHandler sth = new StartTextHandler();
-        Timeline timeline = new Timeline(
+		TimerHandler sth = new TimerHandler();
+        timeline = new Timeline(
         new KeyFrame(Duration.millis(1000), sth));
+        timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.stop();
+        tf.setOnAction(new StartTextHandler());
 		startText.setFill(Color.BLACK);
 		startText.setFont(Font.font("Times new Roman", FontWeight.NORMAL, 20));
-		BorderPane StartTextPane = new BorderPane();
 		StartTextPane.setStyle("-fx-border-color: black");
 		StartTextPane.setLeft(startText);
-		StartTextPane.setRight(startTime);
+		StartTextPane.setRight(tf);
 		Scene scene = new Scene(StartTextPane, 300, 200);
 		primaryStage.setTitle("Excercise 16-21"); // Set the stage title
 		primaryStage.setScene(scene); // Place the scene in the stage
@@ -69,11 +71,28 @@ public class Excercise16_21 extends Application {
 		@Override 
 		public void handle(ActionEvent e) {
 			
-			
 			if (isInteger(tf.getText())) {
-				TextInt = Integer.parseInt(tf.getText());
-                //tfCountDown.setText((Integer.parseInt(tfCountDown.getText()) - 1) + "");
-
+				startText.setText(tf.getText());
+				tf = new TextField();
+				timeline.playFromStart();
+				StartTextPane.setRight(null);
+				startText.setFont(Font.font("Times new Roman", FontWeight.NORMAL, 60));
+				
+			}
+		
+		}
+	}
+	
+	class TimerHandler implements EventHandler<ActionEvent>{
+		@Override 
+		public void handle(ActionEvent e) {
+			
+			if (Integer.parseInt(startText.getText())>0){
+				startText.setText((Integer.parseInt(startText.getText()) - 1) + "");
+			}
+			else {
+				timeline.pause();
+				mediaPlayer.play();
 			}
 		
 		}
@@ -101,5 +120,3 @@ public class Excercise16_21 extends Application {
 	}
 	
 }
-
-
