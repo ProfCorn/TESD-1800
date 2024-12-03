@@ -1,4 +1,3 @@
-package a;
 
 
 
@@ -38,8 +37,8 @@ public class Excercise16_21 extends Application {
 	public BorderPane StartTextPane = new BorderPane();
 	public int TextInt = 0;
 	public Timeline timeline;
-    File file = new File("https://liveexample.pearsoncmg.com/common/audio/anthem/anthem0.mp3");
-    MediaPlayer mediaPlayer = new MediaPlayer(new Media(file.toURI().toString()));
+    String file = ("https://liveexample.pearsoncmg.com/common/audio/anthem/anthem0.mp3");
+    MediaPlayer mediaPlayer = new MediaPlayer(new Media(file));
 	
 	@Override // Override the start method in the Application class
 	public void start(Stage primaryStage) {   
