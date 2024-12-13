@@ -13,6 +13,7 @@ public class Excercise17_01 {
 	
 	
 	public static void main(String[] args) throws IOException {
+		File IntFile = new File("Exercise17_01.txt");
 		try(RandomAccessFile raf = new RandomAccessFile("Exercise17_01.txt", "rw");){
 			raf.setLength(0);
 			Random random = new Random();
