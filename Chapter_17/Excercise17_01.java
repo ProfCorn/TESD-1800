@@ -8,7 +8,7 @@ import java.util.Random;
 
 
 
-public class Excercise17_1 {
+public class Excercise17_01 {
 	
 	
 	
@@ -16,23 +16,20 @@ public class Excercise17_1 {
 		
 		
 		File UsedFile = new File("Exercise17_01.txt");
+		FileOutputStream output;
 		if (UsedFile.exists()) {
-			
+			 output = new FileOutputStream(UsedFile, true);
 		}
-		FileOutputStream output = new FileOutputStream(UsedFile);
+		else {
+			 output = new FileOutputStream(UsedFile, false);	
+		}
 		Random random = new Random();
 		for(int i = 0; i<100; i++) {
-			output.write(random.nextInt(10));
+			int inttemp = random.nextInt(10);
+			output.write((inttemp+" ").getBytes());
 		}
 		
-		FileInputStream input = new FileInputStream("Exercise17_01.txt");
-	
-		int value;
 		
-		while ((value = input.read()) != -1) {
-			System.out.print(value + " ");
-		}
 	}
 	
 }
-
