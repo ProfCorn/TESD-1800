@@ -15,22 +15,22 @@ public class Excercise17_03 {
 	public static void main(String[] args) throws IOException {
 		
 		
-		File UsedFile = new File("Exercise17_03.txt");
+		File UsedFile = new File("Exercise17_03.dat");
 		DataOutputStream output;
 		if (UsedFile.exists()) {
-			output = new DataOutputStream(new FileOutputStream("Exercise17_03.txt",true));
+			output = new DataOutputStream(new FileOutputStream("Exercise17_03.dat",true));
 		}
 		else {
-			output = new DataOutputStream(new FileOutputStream("Exercise17_03.txt",false));
+			output = new DataOutputStream(new FileOutputStream("Exercise17_03.dat",false));
 		}
 		Random random = new Random();
 		for(int i = 0; i<100; i++) {
 			int inttemp = random.nextInt(10);
-			output.writeInt((inttemp));
+			output.writeInt(inttemp);
 			output.writeChars(" ");
 		}
 		
-		FileInputStream input = new FileInputStream("Exercise17_03.txt");
+		FileInputStream input = new FileInputStream("Exercise17_03.dat");
 	
 		
 		
