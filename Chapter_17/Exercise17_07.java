@@ -38,7 +38,7 @@ public class Exercise17_07 {
                 totalLoanAmount = totalLoanAmount + data.getLoanAmount();
                 
                 
-                System.out.print("Added "+data.getLoanAmount()+" to total loan amount");
+                System.out.println("Added $"+data.getLoanAmount()+" to total loan amount");
                 
 
                 // Process read data
@@ -47,7 +47,7 @@ public class Exercise17_07 {
 
         } catch (EOFException e) {
 
-            System.out.println("Reached end of file"); // Handle the exception gracefully
+            System.out.println("Total Loan Amount is: $"+totalLoanAmount); // Handle the exception gracefully
 
         } catch (IOException ex) {
             System.out.println("File could not be opened");
