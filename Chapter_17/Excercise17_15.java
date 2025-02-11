@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 
 
-public class Excercise17_14 {
+public class Excercise17_15 {
 	
 	
 	
@@ -24,12 +24,12 @@ public class Excercise17_14 {
 		
 		File UsedFile = new File(NewFileName);
 		
-		DataOutputStream output;
+		FileOutputStream output;
 		if (UsedFile.exists()) {
-			output = new DataOutputStream(new FileOutputStream(NewFileName,true));
+			output = new FileOutputStream(NewFileName,true);
 		}
 		else {
-			output = new DataOutputStream(new FileOutputStream(NewFileName,false));
+			output = new FileOutputStream(NewFileName,false);
 		}
 		
 		byte[] buffer = new byte[1024];
@@ -43,11 +43,11 @@ public class Excercise17_14 {
             	byte tempData = buffer[i];
     			byte[] tempByte = ((tempData+"").getBytes());
     			for(int j = 0; j<tempByte.length; j++) {
-    				System.out.println((char) tempByte[j]);
     				tempByte[j]=(byte) (tempByte[j]);
     				System.out.println((char) tempByte[j]);
     			}
     			output.write(tempByte);
+    			
             }
         }
 		
