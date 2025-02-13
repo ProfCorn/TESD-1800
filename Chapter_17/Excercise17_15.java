@@ -15,21 +15,21 @@ public class Excercise17_15 {
 	
 	public static void main(String[] args) throws IOException {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Input file name for file you would like to encrypt: ");
+		System.out.println("Input file name for file you would like to decrypt: ");
 		String OldFileName = input.next();
-		System.out.println("Input what you would like to name the encrypted file: ");
+		System.out.println("Input what you would like to name the decrypted file: ");
 		String NewFileName = input.next();
 		
 		FileInputStream inputStream = new FileInputStream(OldFileName);
 		
 		File UsedFile = new File(NewFileName);
 		
-		FileOutputStream output;
+		DataOutputStream output;
 		if (UsedFile.exists()) {
-			output = new FileOutputStream(NewFileName,true);
+			output = new DataOutputStream(new FileOutputStream(NewFileName,true));
 		}
 		else {
-			output = new FileOutputStream(NewFileName,false);
+			output = new DataOutputStream(new FileOutputStream(NewFileName,false));
 		}
 		
 		byte[] buffer = new byte[1024];
@@ -41,13 +41,11 @@ public class Excercise17_15 {
             for (int i = 0; i < bytesRead; i++) {
             	
             	byte tempData = buffer[i];
-    			byte[] tempByte = ((tempData+"").getBytes());
-    			for(int j = 0; j<tempByte.length; j++) {
-    				tempByte[j]=(byte) (tempByte[j]);
-    				System.out.println((char) tempByte[j]);
-    			}
-    			output.write(tempByte);
+            	System.out.println((char) tempData);
+    			tempData=(byte)(tempData-5);
+    			System.out.println((char) tempData);
     			
+    			output.write(tempData);
             }
         }
 		

@@ -32,7 +32,7 @@ public class Excercise17_14 {
 			output = new DataOutputStream(new FileOutputStream(NewFileName,false));
 		}
 		
-		byte[] buffer = new byte[1024];
+		byte[] buffer = new byte[(int) Math.ceil(new File(OldFileName).length())];
 		int bytesRead;
 		
 		
@@ -41,13 +41,11 @@ public class Excercise17_14 {
             for (int i = 0; i < bytesRead; i++) {
             	
             	byte tempData = buffer[i];
-    			byte[] tempByte = ((tempData+"").getBytes());
-    			for(int j = 0; j<tempByte.length; j++) {
-    				System.out.println((char) tempByte[j]);
-    				tempByte[j]=(byte) (tempByte[j]);
-    				System.out.println((char) tempByte[j]);
-    			}
-    			output.write(tempByte);
+            	System.out.println((char) tempData);
+    			tempData=(byte)(tempData+5);
+    			System.out.println((char) tempData);
+    			
+    			output.write(tempData);
             }
         }
 		
