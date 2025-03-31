@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import javafx.util.*;
+import java.io.*;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -16,10 +18,8 @@ import javafx.scene.text.Text;
 import javafx.scene.control.*;
 import javafx.event.*;
 
-public class Exercise15_3 extends Application {
-	//When at home add this to virtual network
-	//--module-path C:\Users\User\Desktop\Randy_School\Java\JavaFX\javafx-sdk-23\lib --add-modules javafx.controls,javafx.fxml
-	//
+public class FinalProjectCode extends Application {
+	
 	NewDay circle = new NewDay();
 	@Override // Override the start method in the Application class
 	public void start(Stage primaryStage) {   
@@ -33,18 +33,6 @@ public class Exercise15_3 extends Application {
 		HBox hBox = new HBox();
 		hBox.setSpacing(10);
 		hBox.setAlignment(Pos.CENTER);
-		Button btLeft = new Button("Left");
-		btLeft.setOnAction(new LeftHandler());
-		Button btRight = new Button("Right");
-		btRight.setOnAction(new RightHandler());
-		Button btUp = new Button("Up");
-		btUp.setOnAction(new UpHandler());
-		Button btDown = new Button("Down");
-		btDown.setOnAction(new DownHandler());
-		hBox.getChildren().add(btLeft);
-		hBox.getChildren().add(btRight);
-		hBox.getChildren().add(btUp);
-		hBox.getChildren().add(btDown);
 		stackPane.getChildren().add(hBox);
 		BorderPane bp = new BorderPane();
 		bp.setCenter(stackPane);
@@ -53,34 +41,6 @@ public class Exercise15_3 extends Application {
 		primaryStage.setTitle("Excercise 15_03"); // Set the stage title
 		primaryStage.setScene(scene); // Place the scene in the stage
 		primaryStage.show(); // Display the stage
-	}
-	class RightHandler implements EventHandler<ActionEvent>{
-		@Override 
-		public void handle(ActionEvent e) {
-			circle.moveX(10.0);
-		}
-		
-	}
-	class LeftHandler implements EventHandler<ActionEvent>{
-		@Override 
-		public void handle(ActionEvent e) {
-			circle.moveX(-10.0);
-		}
-		
-	}
-	class DownHandler implements EventHandler<ActionEvent>{
-		@Override 
-		public void handle(ActionEvent e) {
-			circle.moveY(10.0);
-		}
-		
-	}
-	class UpHandler implements EventHandler<ActionEvent>{
-		@Override 
-		public void handle(ActionEvent e) {
-			circle.moveY(-10.0);
-		}
-		
 	}
 	/**
 	 * The main method is only needed for the IDE with limited
@@ -91,19 +51,18 @@ public class Exercise15_3 extends Application {
 	}
 	
 }
-//CASDFAsd
 
-//Create a Month Manager Which Creates Week managers which creates days.
 
-//asdfasdfas
-class NewDay extends Pane {
+class MonthController extends Pane{
+
+
 	public double size;
 	public double centerX;
 	public double centerY;
 	public double changeX;
 	public double changeY;
 	public boolean first = true;
-	public NewDay() {
+	public MonthController() {
 		paint();
 	}
 	
@@ -156,4 +115,61 @@ class NewDay extends Pane {
 	}
 
 
+
+}
+
+
+class SaveManager {
+	
+	public String saveName = "";
+	public File saveFile;
+	public MonthController[] months;
+	
+		public SaveManager() throws IOException {
+			
+			saveFile = new File(saveName+".dat");
+			DataOutputStream output;
+			if (saveFile.exists()) {
+				output = new DataOutputStream(new FileOutputStream(saveName+".dat",true));
+			}
+			else {
+				output = new DataOutputStream(new FileOutputStream(saveName+".dat",false));
+			}
+			
+			FileInputStream inputStream = new FileInputStream(saveName+".dat");
+		
+			
+			
+			byte[] buffer = new byte[(int) Math.ceil(new File(saveName+".dat").length())];
+			int bytesRead;
+			
+			
+			
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+	            // Process the read bytes in 'buffer'
+	            for (int i = 0; i < bytesRead; i++) {
+	            	
+	            	byte tempData = buffer[i];
+	            	System.out.println((char) tempData);
+	    			tempData=(byte)(tempData+5);
+	    			System.out.println((char) tempData);
+	    			
+	    			output.write(tempData);
+	            }
+			
+		}
+	
+		}
+}
+class NewDay extends Button{
+	public int day;
+	public boolean ABDay;
+	public double centerY;
+	public double changeX;
+	public double changeY;
+
+	NewDay(){
+		
+	
+	}
 }
