@@ -20,23 +20,51 @@ import javafx.event.*;
 
 public class FinalProjectCode extends Application {
 	
-	NewDay circle = new NewDay();
 	@Override // Override the start method in the Application class
 	public void start(Stage primaryStage) {   
 		// Create a scene and place it in the stage
-		StackPane stackPane = new StackPane();
-		Random rand = new Random();
-		Button CIRCLEBUTTON = new Button ("test");
-		CIRCLEBUTTON.setMinSize(350/7, 350/7);
-		CIRCLEBUTTON.setMaxSize(350/7, 350/7);
-		stackPane.getChildren().add(CIRCLEBUTTON);
+		
+		double BUTTON_PADDING = 5;
+		
+		int BUTTONS_PER_LINE = 7;
+		
+		int TotalDays = 31;
+		
+		int DayOn = 0;
+		
+		GridPane grid = new GridPane();
+	    grid.setPadding(new Insets(BUTTON_PADDING));
+	    grid.setHgap(BUTTON_PADDING);
+	    grid.setVgap(BUTTON_PADDING);
+
+	    while (TotalDays > 0) {
+	        for (int c = 0; c < BUTTONS_PER_LINE; c++) {
+	            DayOn = DayOn+1;
+	            TotalDays = TotalDays-1;
+	            NewDay Day = new NewDay(DayOn);
+	            grid.add(Day, c, Math.floorDiv(DayOn-1, 7));
+	            if(TotalDays == 0) {
+	            	
+	            	c = BUTTONS_PER_LINE;
+	            	
+	            }
+	        }
+	    }
+		
+
+		StackPane WeekOne = new StackPane();
+		for(int i = 0; i<7; i++) {
+			NewDay FirstTest = new NewDay(21+i);
+			Random rand = new Random();
+			WeekOne.getChildren().add(FirstTest);
+			FirstTest.setTranslateX(0);
+			FirstTest.setTranslateY(0);
+		}
 		HBox hBox = new HBox();
 		hBox.setSpacing(10);
-		hBox.setAlignment(Pos.CENTER);
-		stackPane.getChildren().add(hBox);
+		hBox.setAlignment(Pos.TOP_LEFT);
 		BorderPane bp = new BorderPane();
-		bp.setCenter(stackPane);
-		bp.setBottom(hBox);
+		bp.setTop(grid);
 		Scene scene = new Scene(bp, 400, 400);
 		primaryStage.setTitle("Excercise 15_03"); // Set the stage title
 		primaryStage.setScene(scene); // Place the scene in the stage
@@ -168,8 +196,25 @@ class NewDay extends Button{
 	public double changeX;
 	public double changeY;
 
-	NewDay(){
+	NewDay(String string){
 		
+		this.setText(string);
+		
+
+		this.setMinSize(350/7, 350/7);
+		this.setMaxSize(350/7, 350/7);
 	
+	}
+	
+	NewDay(int DayInt){
+		
+		day = DayInt;
+		
+		this.setText(""+day);
+
+
+		this.setMinSize(350/7, 350/7);
+		this.setMaxSize(350/7, 350/7);
+		
 	}
 }
